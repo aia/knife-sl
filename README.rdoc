@@ -18,7 +18,7 @@ Depending on your system's configuration, you may need to run this command with 
 
 = CONFIGURATION:
 
-In order to communicate with the Amazon's EC2 API you will have to tell Knife about your AWS Access Key and Secret Access Key.  The easiest way to accomplish this is to create some entries in your <tt>knife.rb</tt> file:
+In order to communicate with the SoftLayer API you will have to tell Knife about your SoftLayer Username and Access Key.  The easiest way to accomplish this is to create some entries in your <tt>knife.rb</tt> file:
 
     knife[:sl_api_username]  = "Your SoftLayer Username"
     knife[:sl_api_key] = "Your SoftLayer Key"
