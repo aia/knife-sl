@@ -93,7 +93,23 @@ class Chef
         return vlans
       end
       
-      
+      def list_firewalls
+        object_mask = {
+          "networkVlans" => {
+            "firewallInterfaces" => ""
+          }
+        }
+        
+        firewalls = connection.object_mask(object_mask).getNetworkVlans
+        
+        active_firewalls = []
+        
+        firewalls.each do |firewall|
+          active_firewalls << firewall if firewall['firewallInterfaces'] != []
+        end
+        
+        return active_firewalls
+      end
     end
   end
 end
