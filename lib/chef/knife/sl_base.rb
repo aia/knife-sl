@@ -82,6 +82,18 @@ class Chef
       def current_domain
         Chef::Config[:knife][:sl_domain]
       end
+      
+      def list_vlans
+        object_mask = {
+          "networkVlans" => ""
+        }
+        
+        vlans = connection.object_mask(object_mask).getNetworkVlans
+        
+        return vlans
+      end
+      
+      
     end
   end
 end
