@@ -59,9 +59,24 @@ class Chef
       def connection(sl_service = "SoftLayer_Account")
         @connection = SoftLayer::Service.new(
           sl_service,
-          :username => Chef::Config[:knife][:sl_api_username],
-          :api_key => Chef::Config[:knife][:sl_api_key]
+          :username => locate_config_value(:sl_api_username),
+          :api_key => locate_config_value(:sl_api_key)
         )
+      end
+      
+      def locate_config_value(key)
+        key = key.to_sym
+        set_key = ["set_", key].join.to_sym
+        
+        ret = Chef::Config[:knife][set_key].nil? ? Chef::Config[:knife][key] : Chef::Config[:knife][set_key]
+        ret = ret.nil? ? config[key] : ret
+        
+        if (ret.nil?)
+          ui.error("Required configuration variable not set: #{key}")
+          exit 1
+        end
+        
+        return ret
       end
       
       def current_domain
