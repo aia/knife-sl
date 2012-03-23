@@ -56,9 +56,9 @@ class Chef
         end
       end
 
-      def connection
+      def connection(sl_service = "SoftLayer_Account")
         @connection = SoftLayer::Service.new(
-          "SoftLayer_Account",
+          sl_service,
           :username => Chef::Config[:knife][:sl_api_username],
           :api_key => Chef::Config[:knife][:sl_api_key]
         )
