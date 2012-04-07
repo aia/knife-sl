@@ -48,7 +48,11 @@ class Chef
           server_list << server['primaryIpAddress']
           server_list << server['privateIpAddress']
           server_list << server['networkManagementIpAddress']
-          server_list << server['notes']
+          if server['notes'].nil?
+            server_list << ""
+          else
+            server_list << server['notes']
+          end
         end
         
         return server_list
