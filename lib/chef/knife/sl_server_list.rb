@@ -48,7 +48,7 @@ class Chef
           server_list << server['primaryIpAddress']
           server_list << server['privateIpAddress']
           server_list << server['networkManagementIpAddress']
-          server_list << server['notes']
+          server_list << server['notes'].to_s
         end
         
         return server_list
