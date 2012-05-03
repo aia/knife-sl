@@ -70,18 +70,14 @@ class Chef
         rules.each do |rule|
           rule_list << rule['orderValue'].to_s
           rule_list << rule['id'].to_s
-          rule_list << rule['action']
-          rule_list << rule['protocol']
-          rule_list << rule['sourceIpAddress']
-          rule_list << rule['sourceIpSubnetMask']
-          rule_list << rule['destinationIpAddress']
+          rule_list << rule['action'].to_s
+          rule_list << rule['protocol'].to_s
+          rule_list << rule['sourceIpAddress'].to_s
+          rule_list << rule['sourceIpSubnetMask'].to_s
+          rule_list << rule['destinationIpAddress'].to_s
           rule_list << rule['destinationIpSubnetMask']
-          rule_list << [rule['destinationPortRangeStart'], rule['destinationPortRangeEnd']].join("-")
-          if rule['notes'].nil?
-            rule_list << ""
-          else
-            rule_list << rule['notes']
-          end
+          rule_list << [rule['destinationPortRangeStart'].to_s, rule['destinationPortRangeEnd'].to_s].join("-")
+          rule_list << rule['notes'].to_s
         end
         
         puts ui.list(rule_list, :uneven_columns_across, 10)

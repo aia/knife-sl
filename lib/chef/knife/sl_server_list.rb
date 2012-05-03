@@ -44,15 +44,11 @@ class Chef
         connection.getHardware.find_all.each do |server|
           next if domain && server['domain'] != domain
           server_list << server['id'].to_s
-          server_list << server['fullyQualifiedDomainName']
-          server_list << server['primaryIpAddress']
-          server_list << server['privateIpAddress']
-          server_list << server['networkManagementIpAddress']
-          if server['notes'].nil?
-            server_list << ""
-          else
-            server_list << server['notes']
-          end
+          server_list << server['fullyQualifiedDomainName'].to_s
+          server_list << server['primaryIpAddress'].to_s
+          server_list << server['privateIpAddress'].to_s
+          server_list << server['networkManagementIpAddress'].to_s
+          server_list << server['notes'].to_s
         end
         
         return server_list
