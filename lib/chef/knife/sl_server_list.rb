@@ -40,12 +40,13 @@ class Chef
         
         server_list.map!{ |f| ui.color(f, :bold) }
         
-        if config[:hourly] = true
-          puts "Listing hourly instances"
-          type = connection.getHourlyVirtualGuests
+        case config[:hourly] 
+          when true
+            puts "Listing hourly instances"
+            type = connection.getHourlyVirtualGuests
         else
-          puts "Listing instances"
-          type = connection.getHardware
+            puts "Listing instances"
+            type = connection.getHardware
         end
 
         type.find_all.each do |server|

@@ -55,8 +55,7 @@ class Chef
 
           option :hourly,
             :long => "--hourly",
-            :description => "Display hourly servers",
-            :boolean => true
+            :description => "Display hourly servers"
 
         end
       end
