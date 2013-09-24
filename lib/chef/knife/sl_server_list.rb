@@ -32,7 +32,6 @@ class Chef
         
         server_list = list_servers(current_domain)
 
-        puts "Listing instances"
         puts ui.list(server_list, :uneven_columns_across, 6)
       end
       
@@ -41,12 +40,20 @@ class Chef
         
         server_list.map!{ |f| ui.color(f, :bold) }
         
-        connection.getHardware.find_all.each do |server|
+        if config[:hourly] = true
+          puts "Listing hourly instances"
+          type = connection.getHourlyVirtualGuests
+        else
+          puts "Listing instances"
+          type = connection.getHardware
+        end
+
+        type.find_all.each do |server|
           next if domain && server['domain'] != domain
           server_list << server['id'].to_s
           server_list << server['fullyQualifiedDomainName'].to_s
           server_list << server['primaryIpAddress'].to_s
-          server_list << server['privateIpAddress'].to_s
+          server_list << server['primaryBackendIpAddress'].to_s
           server_list << server['networkManagementIpAddress'].to_s
           server_list << server['notes'].to_s
         end
