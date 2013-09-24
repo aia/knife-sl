@@ -53,6 +53,10 @@ class Chef
             :description => "Your SoftLayer Domain",
             :proc => Proc.new { |key| Chef::Config[:knife][:sl_domain] = key }
 
+          option :hourly,
+            :long => "--hourly",
+            :description => "Display hourly servers"
+
         end
       end
 
