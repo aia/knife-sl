@@ -17,7 +17,6 @@
 #
 
 require 'chef/knife/sl_base'
-require 'active_support/inflector'
 
 class Chef
   class Knife
