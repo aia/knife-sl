@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.authors     = ["Artem Veremey"]
   s.email       = ["artem@veremey.net"]
-  s.homepage = "http://wiki.opscode.com/display/chef"
+  s.homepage = "https://github.com/aia/knife-sl"
   s.summary = "SoftLayer Support for Chef's Knife Command"
   s.description = s.summary
   s.extra_rdoc_files = ["README.rdoc", "LICENSE" ]
